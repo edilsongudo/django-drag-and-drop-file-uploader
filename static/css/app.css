@@ -1,0 +1,87 @@
+#myProgress {
+    width: 100%;
+}
+
+#uploaded_files {
+    margin-top: 25px;
+    display: flex;
+}
+
+label {
+    font-weight: bold;
+}
+
+.file-icon i {
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+}
+
+.file-details {
+    margin-top: -2px;
+    padding-left: 10px;
+    width: 100%;
+}
+
+.file-details p {
+    margin-bottom: -7px;
+}
+
+small {
+    margin-top: 0;
+    color: black;
+}
+
+.drop-box-container {
+    width: 70%;
+    max-width: 940px;
+    margin: 100px auto; 
+    display: block;
+}
+
+.drop-box {
+    border: 2px dashed rgba(147, 237, 199, 1); 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+}
+
+@media only screen and (max-width: 800px) {
+  .drop-box-container {
+    width: 90%;
+  }
+}
+
+.drop-box p {
+    text-align: center; 
+    vertical-align: middle; 
+    font-size: 24px; 
+    color: gray;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+label.custom-file-upload {
+    display: block;
+    border-radius: 6px;
+    padding: 8px;
+    color: white;
+    background: rgba(147, 237, 199, 1);
+    border-width: 1px;
+    border: 2px solid rgba(147, 237, 199, 1);
+    cursor: pointer;
+    transition: .5s;
+}
+
+label.custom-file-upload:hover {
+    color: rgba(147, 237, 199, 1);
+    background: transparent;
+}
+
+.fa-cloud-upload {
+    font-size: 10rem;
+    color: rgba(147, 237, 199, 1);
+}
