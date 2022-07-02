@@ -1,0 +1,5 @@
+# Run Celery On Windows
+celery -A fileUploader worker --loglevel=info --pool=solo
+
+# Run Celery On Unix Based
+worker: celery -A fileUploader worker --loglevel=info
