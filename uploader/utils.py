@@ -5,6 +5,8 @@ import uuid
 
 def handle_incoming_file_chunk(file):
     file_id = file.name
+    if not os.path.isdir(settings.MEDIA_ROOT):
+        os.mkdir(settings.MEDIA_ROOT)
     temporary_path = os.path.join(settings.MEDIA_ROOT, file_id)
     with open(temporary_path, 'ab') as f:
         f.write(file.read())
