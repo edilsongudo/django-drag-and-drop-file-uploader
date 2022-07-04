@@ -58,14 +58,6 @@ def transcribe(file):
 
     for utterance in utterances:
         start = milliseconds_to_hours(utterance['start'])
-        try:
-            document.add_picture(
-                'staticfiles/core/images/Judiciary-Logo.jpg',
-                width=Inches(1.0),
-                height=Inches(1.0),
-            )
-        except:
-            pass
         document.add_paragraph(f'{utterance["speaker"]} at {start}')
         document.add_paragraph(f'{utterance["text"]}')
         document.add_paragraph()

@@ -5,10 +5,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .tasks import transcribe
-from .utils import (
-    handle_incoming_file_chunk,
-    handle_last_file_chunk,
-)
+from .utils import handle_incoming_file_chunk, handle_last_file_chunk
 
 
 @csrf_exempt
