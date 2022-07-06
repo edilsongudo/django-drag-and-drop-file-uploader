@@ -5,11 +5,16 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .tasks import transcribe
-from .utils import handle_incoming_file_chunk, handle_last_file_chunk
+from .utils import (
+    generate_aws_s3_object_url,
+    generate_presigned_url,
+    handle_incoming_file_chunk,
+    handle_last_file_chunk,
+)
 
 
 @csrf_exempt
-def index(request):
+def upload(request):
     if request.method == 'POST':
         file = request.FILES['file']
         is_last_chunk = request.POST['is_last']
@@ -38,5 +43,17 @@ def results(request, task_id):
             {'transcription_url': res.get(), 'status': 'SUCCESS'}
         )
     if res.state in ('FAILURE', 'REVOKED'):
+        print(res.traceback)
         return JsonResponse({'status': 'FAILURE'})
     return JsonResponse({'status': res.state})
+
+
+def pressigned_url(request, key):
+    url = generate_presigned_url(key)
+    return JsonResponse({'url': url})
+
+
+def task_start(request, key, filename):
+    url = generate_aws_s3_object_url(key)
+    task = transcribe.delay(url, filename)
+    return JsonResponse({'taskID': task.id})
